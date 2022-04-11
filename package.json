@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A-Frame with 8th Wall RoseExtras",
   "name": "@rosedigital/8frame-extras",
   "main": "index.js",
