@@ -4,3 +4,7 @@
 
 # Mac OS
 **/.DS_Store
+
+# testing
+serve/
+index.html
