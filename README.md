@@ -1,15 +1,3 @@
-# 🚀 Welcome to your new awesome project!
+# ROSE A-Frame/8th Wall Extras
 
-This project has been created using **webpack scaffold**, you can now run
-
-```
-npm run build
-```
-
-or
-
-```
-yarn build
-```
-
-to bundle your application
+A collection of utility components for A-Frame/8th Wall projects.
