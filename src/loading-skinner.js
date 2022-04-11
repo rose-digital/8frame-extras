@@ -5,128 +5,132 @@
  */
 
 /**
- * Evaluate a string to see if it is a valid CSS color.
+ * A valid CSS selector.
  * 
- * @param {string} strColor 
- * @returns {boolean}
+ * @typedef {string} Selector
  */
-function isValidColor(strColor) {
-  const s = new Option().style
-  s.color = strColor
 
-  return s.color == strColor.toLowerCase()
-}
+/**
+ * A valid image URL.
+ * 
+ * @typedef {string} ImageUrl
+ */
+
+/**
+ * A valid img src.
+ * 
+ * @typedef {Selector|ImageUrl} ImageSrc
+ */
 
 /**
  * Component that skins the loading screen.
  * 
- * @property {Color} primary The primary color. Used for the top box on the loading screen.
- * @property {Color} secondary The secondary color. Used for the prompt box.
- * @property {Color} background The background color. Used for the loading screen and the prompt screen.
- * @property {Color} active The active button color. Used for the right button in the prompt box.
- * @property {Color} inactive The inactive button color. Used for the left button in the prompt box.
- * @property {Color} text The text color. Affects all text.
- * @property {selector} cameraIcon The selector for the image to be used in the top box on the loading screen.
- * @property {selector} loadingIcon The selector for the image to be used in the bottom box on the loading screen.
+ * @property {Color} primaryColor The primary color. Used for the top box on the loading screen.
+ * @property {Color} secondaryColor The secondary color. Used for the prompt box.
+ * @property {Color} backgroundColor The background color. Used for the loading screen and the prompt screen.
+ * @property {Color} primaryButtonColor The primary button color. Used for the right button in the prompt box.
+ * @property {Color} secondaryButtonColor The secondary button color. Used for the left button in the prompt box.
+ * @property {Color} textColor The text color. Affects all text.
+ * @property {string} fontFamily The typeface to use. Affects all text.
+ * @property {ImageSrc} cameraIcon The src for the image to be used in the top box on the loading screen.
+ * @property {ImageSrc} loadingIcon The src for the image to be used in the bottom box on the loading screen.
+ * @property {ImageSrc} poweredByIcon The src for the image to be used as the "Powered By 8th Wall" icon at the bottom of the loading screen.
  * @property {('spin'|'pulse'|'scale'|'none'|'')}  loadingIconAnimation The kind of animation the loading screen icon should perform.
+ * @property {string} promptText The text to include in the device motion sensors permissions prompt.
+ * @property {string} primaryButtonText The text to include for the right button in the prompt box.
+ * @property {string} secondaryButtonText  The text to include for the left button in the prompt box.
  */
-export default AFRAME.registerComponent('loading-skinner', {
+module.exports = AFRAME.registerComponent('loading-skinner', {
   schema: {
-    primary: { default: '' },
-    secondary: { default: '' },
-    background: { default: '' },
-    active: { default: '' },
-    inactive: { default: '' },
-    text: { default: '' },
-    cameraIcon: { type: 'selector', default: null, },
-    loadingIcon: { type: 'selector', default: null, },
+    primaryColor: { default: '' },
+    secondaryColor: { default: '' },
+    backgroundColor: { default: '' },
+    primaryButtonColor: { default: '' },
+    secondaryButtonColor: { default: '' },
+    textColor: { default: '' },
+    fontFamily: { default: '' },
+    cameraIcon: { default: '' },
+    loadingIcon: { default: '' },
+    poweredByIcon: { default: '' },
     loadingIconAnimation: { default: '' },
+    promptText: { default: '' },
+    primaryButtonText: { default: '' },
+    secondaryButtonText: { default: '' },
   },
   init() {
     const {
-      primary,
-      secondary,
-      background,
-      active,
-      inactive,
-      text,
+      primaryColor,
+      secondaryColor,
+      backgroundColor,
+      primaryButtonColor,
+      secondaryButtonColor,
+      textColor,
+      fontFamily,
       cameraIcon,
       loadingIcon,
       loadingIconAnimation,
+      poweredByIcon,
+      promptText,
+      primaryButtonText,
+      secondaryButtonText,
     } = this.data
 
-    const styles = ''
+    let styles = ''
 
-    if (primary) {
-      if (isValidColor(primary)) {
-        styles.concat(`
-          #requestingCameraPermissions {
-            background-color: ${primary};
-          }
-        `)
-      } else {
-        console.warn(`Attempted to set the primary color to an invalid value: ${primary}`)
-      }
+    if (primaryColor) {
+      styles = styles.concat(`
+        #requestingCameraPermissions {
+          background-color: ${primaryColor};
+        }
+      `)
     }
 
-    if (secondary) {
-      if (isValidColor(secondary)) {
-        styles.concat(`
-          .prompt-box-8w {
-            background-color: ${secondary};
-          }
-        `)
-      } else {
-        console.warn(`Attempted to set the secondary color to an invalid value: ${secondary}`)
-      }
+    if (secondaryColor) {
+      styles = styles.concat(`
+        .prompt-box-8w {
+          background-color: ${secondaryColor};
+        }
+      `)
     }
 
-    if (background) {
-      if (isValidColor(background)) {
-        styles.concat(`
-          #loadBackground {
-            background-color: ${background};
-          }
-        `)
-      } else {
-        console.warn(`Attempted to set the background color to an invalid value: ${background}`)
-      }
+    if (backgroundColor) {
+      styles = styles.concat(`
+        #loadBackground {
+          background-color: ${backgroundColor};
+        }
+      `)
     }
 
-    if (active) {
-      if (isValidColor(active)) {
-        styles.concat(`
-          .button-primary-8w {
-            background-color: ${active};
-          }
-        `)
-      } else {
-        console.warn(`Attempted to set the active button color to an invalid value: ${active}`)
-      }
+    if (primaryButtonColor) {
+      styles = styles.concat(`
+        .button-primary-8w {
+          background-color: ${primaryButtonColor};
+        }
+      `)
     }
 
-    if (inactive) {
-      if (isValidColor(inactive)) {
-        styles.concat(`
-          .prompt-button-8w {
-            background-color: ${inactive};
-          }
-        `)
-      } else {
-        console.warn(`Attempted to set the inactive button color to an invalid value: ${inactive}`)
-      }
+    if (secondaryButtonColor) {
+      styles = styles.concat(`
+        .prompt-button-8w {
+          background-color: ${secondaryButtonColor};
+        }
+      `)
     }
 
-    if (text) {
-      if (isValidColor(text)) {
-        styles.concat(`
-          #loadingContainer * {
-            color: ${text};
-          }
-        `)
-      } else {
-        console.warn(`Attempted to set the inactive button color to an invalid value: ${inactive}`)
-      }
+    if (textColor) {
+      styles = styles.concat(`
+        #loadingContainer * {
+          color: ${textColor};
+        }
+      `)
+    }
+
+    if (fontFamily) {
+      styles = styles.concat(`
+        #loadingContainer * {
+          font-family: ${fontFamily};
+        }
+      `)
     }
 
     if (cameraIcon) {
@@ -151,6 +155,40 @@ export default AFRAME.registerComponent('loading-skinner', {
       if (loadingIconAnimation !== 'none') {
         loadingIconEl.classList.add(loadingIconAnimation)
       }
+    }
+
+    if (poweredByIcon) {
+      const poweredByEl = document.querySelector('.poweredby-img')
+      poweredByEl.src = poweredByIcon
+    }
+
+    if (promptText || primaryButtonText || secondaryButtonText) {
+      let inDom = false
+
+      const observer = new MutationObserver(() => {
+        if (document.querySelector('.prompt-box-8w')) {
+          if (!inDom) {
+            if (promptText) {
+              document.querySelector('.prompt-box-8w p').innerHTML = promptText
+            }
+
+            if (primaryButtonText) {
+              document.querySelector('.button-primary-8w').innerHTML = primaryButtonText
+            }
+
+            if (secondaryButtonText) {
+              document.querySelector('.prompt-button-8w').innerHTML = secondaryButtonText
+            }
+          }
+
+          inDom = true
+        } else if (inDom) {
+          inDom = false
+          observer.disconnect()
+        }
+      })
+
+      observer.observe(document.body, { childList: true })
     }
 
     const newStyle = document.createElement('style')

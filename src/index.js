@@ -1,1 +1,2 @@
-console.log('Hello World from your main file!');
+require('./loading-skinner.js')
+require('./splash-module/splash-module.js')
