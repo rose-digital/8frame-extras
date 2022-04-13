@@ -1,0 +1,22 @@
+#carousel {
+  position: absolute;
+  bottom: 28vmin;
+  width: 100%;
+  z-index: 798;
+}
+
+.carousel-cell {
+  font-size: 1rem;
+  border-radius: 500px;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem 1.5rem;
+  margin: 0.5rem;
+}
+
+.carousel-cell.is-selected {
+  background-color: black;
+  color: white;
+}

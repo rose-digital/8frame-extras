@@ -1,6 +1,6 @@
-require('!style-loader!css-loader!./splash-module.css')
+require('!style-loader!css-loader!./splash-screen.css')
 
-const html = require('./splash-module.html').default
+const html = require('./splash-screen.html').default
 
 /**
  * A valid CSS selector.
@@ -28,7 +28,7 @@ const html = require('./splash-module.html').default
  * @property {string} body The body text.
  * @property {string} cta The text for the call to action button.
  */
-module.exports = AFRAME.registerComponent('splash-module', {
+module.exports = AFRAME.registerComponent('splash-screen', {
   schema: {
     backgroundImage: { type: 'selector', default: null, },
     title: { default: '' },
