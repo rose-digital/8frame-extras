@@ -87,7 +87,7 @@ module.exports = AFRAME.registerComponent('loading-skinner', {
 
     if (secondaryColor) {
       styles = styles.concat(`
-        .prompt-box-8w {
+        div.prompt-box-8w.prompt-box-8w {
           background-color: ${secondaryColor};
         }
       `)
@@ -95,7 +95,7 @@ module.exports = AFRAME.registerComponent('loading-skinner', {
 
     if (backgroundColor) {
       styles = styles.concat(`
-        #loadBackground {
+        #loadingContainer, #loadingContainer > * {
           background-color: ${backgroundColor};
         }
       `)
@@ -103,7 +103,7 @@ module.exports = AFRAME.registerComponent('loading-skinner', {
 
     if (primaryButtonColor) {
       styles = styles.concat(`
-        .button-primary-8w {
+        button.button-primary-8w.button-primary-8w, .main-button {
           background-color: ${primaryButtonColor};
         }
       `)
@@ -111,7 +111,7 @@ module.exports = AFRAME.registerComponent('loading-skinner', {
 
     if (secondaryButtonColor) {
       styles = styles.concat(`
-        .prompt-button-8w {
+        button.prompt-button-8w.prompt-button-8w {
           background-color: ${secondaryButtonColor};
         }
       `)
@@ -119,7 +119,7 @@ module.exports = AFRAME.registerComponent('loading-skinner', {
 
     if (textColor) {
       styles = styles.concat(`
-        #loadingContainer * {
+        #loadingContainer *, .prompt-box-8w * {
           color: ${textColor};
         }
       `)
@@ -127,7 +127,7 @@ module.exports = AFRAME.registerComponent('loading-skinner', {
 
     if (fontFamily) {
       styles = styles.concat(`
-        #loadingContainer * {
+        #loadingContainer *, .prompt-box-8w * {
           font-family: ${fontFamily};
         }
       `)
